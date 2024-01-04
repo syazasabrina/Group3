@@ -1,0 +1,119 @@
+#cart-container {
+    display: flex;
+    flex-direction: column;
+    
+}
+
+.item-container {
+    border-radius: 1rem;
+    background-color: #da8bfa;
+    margin-left:auto;
+    margin-right: auto ;
+    margin-top: 1rem;
+    display:flex;
+    align-content: space-between;
+    width: 70rem;
+}
+
+.detailsItem-container {
+    display: flex;
+    border: none;
+    box-sizing: border-box;
+}
+
+.namePrice  {
+    flex-direction: row;
+    font-family: Cabin Condensed, 'Source Sans Pro';
+    font-size: 22px;
+    color :rgb(90, 0, 90);
+}
+
+.item1  {
+    height: 150px;
+    width: 150px;
+    padding: 1rem;
+    border-radius: 1.25rem;
+    margin-left: 10px;
+}
+
+.subtotal-container {
+    justify-content: space-between ;
+    border: 0.5px black;
+    margin-left: auto;
+    margin-right: 1.25rem;
+    box-sizing: border-box;
+    display: flex;
+    gap:1rem;
+    align-items: center;
+    font-family: Cabin Condensed, 'Source Sans Pro';
+    font-size: 22px;
+    color :rgb(90, 0, 90);
+}
+
+.add-button {
+    border: #2e0755;
+    border-radius: 0.25rem;
+    width: 100%;
+    padding: 0.25rem;
+}
+
+.add-button:hover {
+    background-color: #440781;
+    color: white;
+}
+
+.remove-button {
+    border: #2e0755;
+    border-radius: 0.25rem;
+    width: 100%;
+    padding: 0.25rem;
+}
+
+.remove-button:hover {
+    background-color: #440781;
+    color: white;
+}
+
+.quantity-product {
+    display: contents;
+    color :rgb(90, 0, 90);
+    margin-top: 45px;
+    font-family: Cabin Condensed, 'Source Sans Pro';
+   
+    margin-right: 15px;
+
+}
+.button-container {
+    display: flex;
+    gap: 0.25rem;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    margin-left: 10px;
+    font-size: 17px;
+}
+
+/* Add this CSS for the checkout button */
+.checkout-button {
+    margin-top: 20px; /* Adjust as needed */
+    margin-right: 17rem; /* This will give some space on the right side */
+    padding: 10px 20px;
+    background-color: #2e0755;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    display: none;
+}
+
+.checkout-button:hover {
+    background-color: #6a129c; /* Darken the background color on hover */
+}
+
+.none {
+    text-align: center;
+}

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart</title>
+    <link rel="stylesheet" href="header_style.css">
+    <link rel="stylesheet" href="cart.css">
+    <style>
+        /* Add this to make sure the checkout button aligns to the right */
+        body {
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* This will push the checkout button to the right side */
+        body > .checkout-button {
+            align-self: flex-end;
+        }
+
+        .shopping-cart {
+            margin-left: 12.5rem;
+            margin-top: 3rem;
+            font-size: 24px;
+            color: #2e0755;
+            font-family: Geneva, Tahoma, sans-serif;
+            font-weight: bold;
+        }
+        
+        
+    </style>
+</head>
+<body>
+    <header>
+        <h1><i>"Indeed, Allah is beautiful and He loves beauty"</i></h1>
+    </header>
+    <nav>
+        <button class="nav-button" onclick="navigateToPage('home.html')">Home</button>
+        <button class="nav-button" onclick="navigateToPage('products.html')">Products</button>
+        <button class="nav-button" onclick="navigateToPage('contact.html')">Contact</button>
+        <button class="nav-button" onclick="navigateToPage('blog.html')">Blog</button>
+        <p>AINAA BEAUTY BY AGENT ATHIRAH</p>
+        <button class="nav-button cart-button" onclick="navigateToPage('cart.html')">
+            <img src="web images/carto.png" alt="carts">
+            <span id="cartCount">0</span>
+        </button>
+    </nav>
+
+    <p class="shopping-cart">MY SHOPPING CART</p>
+    
+    <div id="cart-container">
+        <!-- Cart items will be displayed here -->
+    </div>   
+
+    <!-- Add the checkout button below cart-container -->
+    <button class="checkout-button" onclick="navigateToPage('checkout.html')">Checkout</button>
+
+    <script 
+        src="https://code.jquery.com/jquery-3.7.1.slim.min.js" integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8=" crossorigin="anonymous">
+    </script>
+
+    <!-- Call cartCount function(External file js) -->
+    <script src="cartCount.js"></script>
+
+    <script>
+        //Turn to another page to target file
+        function navigateToPage(targetUrl) {
+            window.location.href = targetUrl;
+        }
+
+        // Retrieve cart items from localStorage and display them
+        document.addEventListener('DOMContentLoaded', function() {
+            displayCartItems();
+        });
+
+        function displayCartItems() {
+            let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+            let cartItemsDiv = document.getElementById('cart-container');
+            let totalPrice = 0; // Initialize total price
+
+            let cartHTML = '';
+
+            if (cartItems.length > 0) {
+                // If there are items in the cart, display the checkout button
+                document.querySelector('.checkout-button').style.display = 'block';
+
+                cartItems.forEach(item => {
+                    const productTotal = item.price * item.quantity; // Calculate product total
+                    totalPrice += productTotal; // Update the overall total price
+
+                    cartHTML += `
+                <div class="item-container">
+                    <div class="detailsItem-container">
+                        <img class="item1" src="${item.image}">
+                        <div class="namePrice">
+                            <p>${item.name}</p>
+                            <p>${item.details}</p>
+                            <p>RM${item.price}</p>
+                        </div>
+                    </div>
+                    <div class="subtotal-container">
+                        <p>Qty: ${item.quantity}</p>
+                        <p class="quantity-product">RM${productTotal}</p>
+                        <div class="button-container">
+                            <button class="add-button" onclick="editQuantity('${item.name}', 'add')">Add</button>
+                            <button class="remove-button" onclick="editQuantity('${item.name}', 'remove')">Remove</button>
+                        </div>
+                    </div>
+                </div>`;
+            });
+            } else {
+                // If cart is empty, hide the checkout button
+                document.querySelector('.checkout-button').style.display = 'none';
+                cartHTML = '<p class = "none">--Your cart is empty--</p>';
+            }
+
+            // Update the total price display (if needed)
+            // This is just a placeholder; you can update your UI to display the totalPrice
+            console.log('Total Price:', totalPrice);
+
+            cartItemsDiv.innerHTML = cartHTML;
+        }
+
+    </script>
+    
+</body>
+
+</html>

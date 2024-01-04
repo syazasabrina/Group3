@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout</title>
+    <link rel="stylesheet" href="header_style.css">
+    <link rel="stylesheet" href="cart.css">
+    <style>
+        .order-summary {
+            margin-left: 12.5rem;
+            margin-top: 3rem;
+            font-size: 24px;
+            color: #2e0755;
+            font-family: Geneva, Tahoma, sans-serif;
+            font-weight: bold;
+        }
+
+        #cart-summary {
+            margin-left: auto;
+            margin-right: 12.5rem;
+            padding: 20px;
+            border: 1px solid #ddd;
+            width: 350px;
+            font-size: 18px;
+            color :rgb(105, 2, 100);
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        }
+
+        #shipping-options {
+            margin-top: 20px;
+        }
+
+        .tAmount {
+            background-color: #f2f2f2; /* Choose your desired background color */
+            border: none; /* Removes the border */
+            border-radius: 5px;
+            padding: 5px 7px; /* Optional: adds some padding for better appearance */
+        }
+
+        .checkout {
+            background-color: #d17fd0;
+            border: none;
+            border-radius: 15px;
+            padding: 6px 7px;
+        }
+
+        .checkout:hover {
+            background-color: #440781;
+            color: white;
+        }
+        
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1><i>"Indeed, Allah is beautiful and He loves beauty"</i></h1>
+    </header>
+    <nav>
+        <button class="nav-button" onclick="navigateToPage('home.html')">Home</button>
+        <button class="nav-button" onclick="navigateToPage('products.html')">Products</button>
+        <button class="nav-button" onclick="navigateToPage('contact.html')">Contact</button>
+        <button class="nav-button" onclick="navigateToPage('blog.html')">Blog</button>
+        <p>AINAA BEAUTY BY AGENT ATHIRAH</p>
+        <button class="nav-button cart-button" onclick="navigateToPage('cart.html')">
+            <img src="web images/carto.png" alt="carts">
+            <span id="cartCount">0</span>
+        </button>
+    </nav>
+
+    <p class="order-summary">ORDER SUMMARY</p>
+
+    <div id="cart-container">
+        <!-- Cart items will be displayed here -->
+    </div>  
+
+    <div id="cart-summary">
+        <!-- Subtotal -->
+        <div id="subtotal-container">
+            <p>Subtotal: <span id="subtotalAmount">0</span></p>
+        </div>
+
+        <!-- Shipping Options -->
+        <div id="shipping-options">
+            <p>Select Shipping:</p>
+            <label><input type="radio" name="shipping" value="8.00"> Semenanjung Malaysia: RM8.00</label><br>
+            <label><input type="radio" name="shipping" value="12.00"> Sabah/Sarawak: RM12.00</label><br>
+            <label><input type="radio" name="shipping" value="5.00"> COD (Temerloh only): RM5.00</label>
+        </div>
+
+        <!-- Total -->
+        <div id="total-container">
+            <p class="tAmount" >Total: <span id="totalAmount">0</span></p>
+            <p class="checkout">Checkout</p>
+        </div>
+    </div>
+
+    <script 
+        src="https://code.jquery.com/jquery-3.7.1.slim.min.js" integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8=" crossorigin="anonymous">
+    </script>
+
+    <!-- Call cartCount function(External file js) -->
+    <script src="cartCount.js"></script>
+    <script>
+        // Retrieve cart items from localStorage and display them
+        document.addEventListener('DOMContentLoaded', function() {
+            displayCartItems();
+            updateSummary();
+        });
+
+        function displayCartItems() {
+            let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+            let cartItemsDiv = document.getElementById('cart-container');
+            let totalPrice = 0; // Initialize total price
+
+            let cartHTML = '';
+
+            if (cartItems.length > 0) {
+                
+                cartItems.forEach(item => {
+                    const productTotal = item.price * item.quantity; // Calculate product total
+                    totalPrice += productTotal; // Update the overall total price
+
+                    cartHTML += `
+                <div class="item-container">
+                    <div class="detailsItem-container">
+                        <img class="item1" src="${item.image}">
+                        <div class="namePrice">
+                            <p>${item.name}</p>
+                            <p>${item.details}</p>
+                            <p>RM${item.price}</p>
+                        </div>
+                    </div>
+                    <div class="subtotal-container">
+                        <p>Qty: ${item.quantity}</p>
+                        <p class="quantity-product " style="padding-left:10rem">RM${productTotal}</p>
+                        
+                    </div>
+                </div>`;
+            });
+            } else {
+                cartHTML = '<p class = "none">--Your cart is empty--</p>';
+            }
+
+            // Update the total price display (if needed)
+            // This is just a placeholder; you can update your UI to display the totalPrice
+            console.log('Total Price:', totalPrice);
+
+            cartItemsDiv.innerHTML = cartHTML;
+        }
+
+        // Calculate subtotal and update summary
+        function updateSummary() {
+            let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+            let subtotal = 0;
+    
+            cartItems.forEach(item => {
+                subtotal += item.price * item.quantity;
+            });
+
+            document.getElementById('subtotalAmount').textContent = `RM${subtotal.toFixed(2)}`;
+
+            // Event listener for shipping options
+            document.querySelectorAll('input[name="shipping"]').forEach(radio => {
+                radio.addEventListener('change', function() {
+                    let shippingFee = parseFloat(this.value);
+                    let total = subtotal + shippingFee;
+                    document.getElementById('totalAmount').textContent = `RM${total.toFixed(2)}`;
+                });
+            });
+        }
+    </script>
+
+    <script>
+        function navigateToPage(targetUrl) {
+            window.location.href = targetUrl;
+        }
+    </script>
+</body>
+
+</html>

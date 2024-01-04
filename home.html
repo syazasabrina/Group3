@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="header_style.css">
+    <link rel="stylesheet" href="style.css">
+    
+    <style>
+    
+        section {
+            box-sizing: border-box;
+            overflow: hidden;
+            padding: 1em;
+            position: relative; /* Add relative positioning to the section */
+        }
+
+        section img {
+            width: 100%; /* Use 100% width for the image */
+            height: auto;
+            display: block; /* Ensure the image takes up the full width of its container */
+        }
+
+
+        .button-container {
+            position: absolute; /* Use absolute positioning */
+            top: 42%; /* Adjust the top position as needed */
+            left: 50%; /* Adjust the left position as needed */
+            transform: translate(-50%, -50%); /* Center the button */
+            text-align: center;
+        }
+
+        .next-button {
+            padding: 10px 20px;
+            background-color: #582357;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+            font-family: Georgia, 'Times New Roman', Times, serif;
+        }
+
+        .next-button:hover {
+            background-color: #944491;
+            font-size: large;
+        }
+        .video-container {
+        position: relative;
+        width: 100%;
+        padding-bottom: 75%; /* Adjust the aspect ratio as needed */
+        margin-top: 20px; /* Adjust as needed */
+    }
+
+    .video-container iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+
+    </style>
+</head>
+<body>
+    <header>
+        <h1><i>"Indeed, Allah is beautiful and He loves beauty"</i></h1>
+    </header>
+
+    <nav>
+        <button class="nav-button" onclick="navigateToPage('home.html')">Home</button>
+        <button class="nav-button" onclick="navigateToPage('products.html')">Products</button>
+        <button class="nav-button" onclick="navigateToPage('contact.html')">Contact</button>
+        <button class="nav-button" onclick="navigateToPage('blog.html')">Blog</button>
+        <p>AINAA BEAUTY BY AGENT ATHIRAH</p>
+        <button class="nav-button cart-button" onclick="navigateToPage('cart.html')">
+            <img src="web images/carto.png" alt="carts">
+            <span id="cartCount">0</span>
+        </button>
+    </nav>
+
+    <section>
+        <img src="web images/ainaabeauty.jpg" alt="ainaabeauty">
+        <img src="web images/set ainaa.jpg" alt="set ainaa">
+        <div class="button-container">
+        <a href="products.html" class="next-button">Buy Now</a>
+        </div>
+    </section>
+
+    <section>
+        <h3><b>STEP-BY-STEP SKINCARE ROUTINE WITH AINAA BEAUTY</b></h3>
+        <div class="video-container">
+            <iframe src="https://www.facebook.com/plugins/video.php?height=476&href=https%3A%2F%2Fwww.facebook.com%2FAinaaBeautyOfficial%2Fvideos%2F291368862908343%2F&show_text=false&width=357&t=0" width="357" height="476" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share" allowFullScreen="true"></iframe>
+        </div>
+    </section>
+    
+
+    <script 
+        src="https://code.jquery.com/jquery-3.7.1.slim.min.js" integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8=" crossorigin="anonymous">
+    </script>
+
+    <script>
+        function navigateToPage(targetUrl) {
+            window.location.href = targetUrl;
+        }
+
+        <!-- Function to take cartCount from the localStorage -->
+        $(document).ready(function() {
+            // Initialize cartCount from localStorage if available, otherwise set it to 0
+            let cartCount = localStorage.getItem('cartCount') ? parseInt(localStorage.getItem('cartCount')) : 0;
+
+            // Update the cart count on the cart icon
+            $('#cartCount').text(cartCount);
+        });
+    </script>
+
+</body>
+
+</html>

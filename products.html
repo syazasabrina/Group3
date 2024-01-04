@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product</title>
+    <link rel="stylesheet" href="header_style.css">
+    <style>
+        /* styles.css */
+        
+        /* Product container styling */
+        .product-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            padding: 20px;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        /* Individual product item styling */
+        .product-item {
+            width: 250px;
+            margin: 20px;
+            padding: 14px;
+            border: 1px solid #e0e0e0;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Product image styling */
+        .product-item img {
+            width: 200px;
+            height: 200px;
+            margin: 0;
+        }
+
+        /* Product name styling */
+        .product-item h3 {
+            font-size: large;
+            font-family: Georgia,'Times New Roman', serif;
+            margin: 0;
+        }
+
+        /* Product price styling */
+        .product-item p {
+            font-size: 15px;
+            font-family: Georgia,'Times New Roman', serif;
+            margin: 0;
+        }
+
+        .product-item button {
+            margin-top: 8px;
+            color: black;
+            background-color: #e489f0;
+            display: inline-block;
+            text-decoration: none;
+            vertical-align:auto;
+            font-family: Georgia, 'Times New Roman', serif;
+            font-size: 14px;
+            padding: 6px 15px; /* Padding for better appearance */
+            border-radius: 7px; /* Rounded corners */
+            border: none; /* Remove default button border */
+            cursor: pointer; /* Cursor style on hover */
+        }
+
+        .product-item button img {
+            vertical-align: middle;
+            margin-left: 8px; /* Adjust as needed for spacing */
+            width: 18px;/* Adjust the maximum width of the image */
+            height: 18px;
+        }
+
+        .product-item button:hover {
+            font-weight: bold; /*change format to bold*/
+            background-color: #f0b4ff; /*change background color on hover*/
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+        <h1><i>"Indeed, Allah is beautiful and He loves beauty"</i></h1>
+    </header>
+
+    <nav>
+        <button class="nav-button" onclick="navigateToPage('home.html')">Home</button>
+        <button class="nav-button" onclick="navigateToPage('products.html')">Products</button>
+        <button class="nav-button" onclick="navigateToPage('contact.html')">Contact</button>
+        <button class="nav-button" onclick="navigateToPage('blog.html')">Blog</button>
+        <p>AINAA BEAUTY BY AGENT ATHIRAH</p>
+        <button class="nav-button cart-button" onclick="navigateToPage('cart.html')">
+            <img src="web images/carto.png" alt="carts">
+            <span id="cartCount">0</span>
+        </button>
+    </nav>
+
+    <div class="product-container">
+
+        <!-- Product 1 -->
+        <div class="product-item" style="background-color: #e489f0;">
+            <img src="web images/cleanser.jpg" alt="cleanser">
+            <h3>Ainaa Cleanser</h3>
+            <p>RM 45.00</p>
+            <button id="addToCartBtn" onclick="addToCart('web images/cleanser.jpg','Ainaa Cleanser',45.00,'100g')">Add to Cart<img src="web images/carto.png" alt="carts"></button>
+        </div>
+
+        <!-- Product 2 -->
+        <div class="product-item" style="background-color: #e489f0;">
+            <img src="web images/serum.jpg"  alt="serum">
+            <h3>Ainaa Serum</h3>
+            <p>RM 65.00</p>
+            <button id="addToCartBtn" onclick="addToCart('web images/serum.jpg','Ainaa Serum',65.00,'100g')">Add to cart<img src="web images/carto.png" alt="carts"></button>
+        </div>
+
+        <!-- Product 3 -->
+        <div class="product-item" style="background-color: #e489f0;">
+            <img src="web images/moisturizer.jpg"  alt="moisturizer">
+            <h3>Ainaa Moisturizer</h3>
+            <p>RM 49.00</p>
+            <button id="addToCartBtn" onclick="addToCart('web images/moisturizer.jpg', 'Ainaa Moisturizer', 49.00, '50ml')">Add to cart<img src="web images/carto.png" alt="carts"></button>
+        </div>
+
+        <!-- Product 4 -->
+        <div class="product-item" style="background-color: #e489f0;">
+            <img src="web images/sunscreen.jpg"  alt="sunscreen">
+            <h3>Ainaa Sunscreen</h3>
+            <p>RM 59.00</p>
+            <button id="addToCartBtn" onclick="addToCart('web images/sunscreen.jpg','Ainaa Sunscreen',59.00,'50g')">Add to cart<img src="web images/carto.png" alt="carts"></button>
+        </div>
+
+        <!-- Product 5 -->
+        <div class="product-item" style="background-color: #e489f0;">
+            <img src="web images/scrub.jpg"  alt="scrub">
+            <h3>Ainaa Scrub</h3>
+            <p>RM 39.00</p>
+            <button id="addToCartBtn" onclick="addToCart('web images/scrub.jpg','Ainaa Scrub',39.00,'100ml')">Add to cart<img src="web images/carto.png" alt="carts"></button>
+        </div>
+    </div>
+    <script 
+        src="https://code.jquery.com/jquery-3.7.1.slim.min.js" integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8=" crossorigin="anonymous">
+    </script>
+    <script>
+        
+        $(document).ready(function() {
+            try {
+                // Initialize cartCount from localStorage if available, otherwise set it to 0
+                let storedCartCount = localStorage.getItem('cartCount');
+        
+                // Parse and check if it's a valid number, if not, set it to 0
+                let cartCount = storedCartCount ? parseInt(storedCartCount) : 0;
+                    if (isNaN(cartCount)) {
+                        cartCount = 0;
+                    }
+
+                // Update the cart count on the cart icon
+                $('#cartCount').text(cartCount);
+
+                // Add to Cart Button Click Event
+                $('.product-item button').click(function() {
+                    cartCount++; // Increment the item count
+                    localStorage.setItem('cartCount', cartCount); // Store the updated cart count in localStorage
+                    $('#cartCount').text(cartCount); // Update the cart count on the cart icon
+                });
+
+                // Call function to ensure consistency across pages
+                updateCartCount();
+            } catch (error) {
+                console.error('Error occurred while initializing cart count:', error);
+                // Handle the error gracefully, perhaps resetting the cart count to 0 or another default value
+                localStorage.setItem('cartCount', 0);
+                $('#cartCount').text(0);
+            }
+        });
+
+        function navigateToPage(targetUrl) {
+            window.location.href = targetUrl;
+        }
+    </script>
+    <script>
+        function addToCart(productImage, productName, productPrice, productDetails) {
+        // Retrieve cart items from local storage or initialize an empty array
+            let cartItems = localStorage.getItem('cartItems') ? JSON.parse(localStorage.getItem('cartItems')) : [];
+
+            // Check if the product already exists in the cart
+            const existingProduct = cartItems.find(product => product.name === productName);
+
+            let product = {
+                image: productImage,
+                name: productName,
+                price: productPrice,
+                details: productDetails,
+                quantity: 1 // Initialize quantity to 1 for new products
+            };
+
+            if (existingProduct) {
+                existingProduct.quantity++; // Increase quantity if product exists
+            } else {
+                cartItems.push(product); // Add new product to cart
+            }
+
+            // Update the cartItems in local storage
+            localStorage.setItem('cartItems', JSON.stringify(cartItems));
+        }
+
+        function updateCartCount() {
+            try {
+                let storedCartCount = localStorage.getItem('cartCount');
+                let cartCount = storedCartCount ? parseInt(storedCartCount) : 0;
+        
+                if (isNaN(cartCount)) {
+                    cartCount = 0;
+                }
+
+                $('#cartCount').text(cartCount);
+            } catch (error) {
+                console.error('Error occurred while updating cart count:', error);
+                // Handle the error gracefully, perhaps resetting the cart count to 0 or another default value
+                localStorage.setItem('cartCount', 0);
+                $('#cartCount').text(0);
+            }
+        }
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog</title>
+    <link rel="stylesheet" href="header_style.css">
+    <style>
+    /*polygon container styling (rectangle 1 & rectangle 2)*/
+    .rectangle-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        padding: 20px;
+        max-width: 1200px;
+        margin: auto;
+    }
+    /*Individual polygon styling for rectangle 1*/
+    .rectangle-polygon {
+        width: 900px; 
+        height: 400px; 
+        background: #D996F9; 
+        border-radius: 120px;
+        margin: 10px;
+        padding: 15px;
+        text-align: center;
+    }
+    /*Individual polygon styling for rectangle 2*/
+    .rectangle-polygon2 {
+        width: 900px; 
+        height: 150px; 
+        background: #D996F9; 
+        border-radius: 120px;
+        margin: 10px;
+        padding: 15px;
+        text-align: center;
+    }
+    /**/
+    .rectangle1-container {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-around;
+        padding: 20px;
+        max-width: 1200px;
+        margin: auto;
+    }
+    .feedback1 img {
+        width: 200;
+        height: 350px;
+        margin: 0;
+    }
+    .feedback2 img {
+        width: 150;
+        height: 300px;
+        margin: 0;
+    }
+    .triangle img {
+        width: 350px;
+        height: 300px;
+        margin: 0;
+    }
+    .tittle1 {
+        width: 320px;
+        height: 132px;
+        position: absolute;
+        left: 305px;
+        top: 265px;
+        font-size: 50px;
+        font-weight: 400;
+        line-height: 0.55;
+        color: #000000;
+        font-family:'Impact';
+    }
+    .tittle2 {
+        width: 320px;
+        height: 132px;
+        position: absolute;
+        left: 305px;
+        top: 328px;
+        font-size: 50px;
+        font-weight: 400;
+        line-height: 0.55;
+        color: #000000;
+        font-family:'Impact';
+    }
+    .info {
+        position: relative;
+        left: 3px; /* Moves the paragraph 20px to the right from its normal position */
+        top:-80px;
+    }
+    .didyouknow {
+        position: relative;
+        left: 5px; /* Moves the paragraph 20px to the right from its normal position */
+        top:-45px;
+    }
+
+    </style>
+</head>
+<body>
+    <header>
+        <h1><i>"Indeed, Allah is beautiful and He loves beauty"</i></h1>
+    </header>
+
+    <nav>
+        <button class="nav-button" onclick="navigateToPage('home.html')">Home</button>
+        <button class="nav-button" onclick="navigateToPage('products.html')">Products</button>
+        <button class="nav-button" onclick="navigateToPage('contact.html')">Contact</button>
+        <button class="nav-button" onclick="navigateToPage('blog.html')">Blog</button>
+        <p>AINAA BEAUTY BY AGENT ATHIRAH</p>
+        <button class="nav-button cart-button" onclick="navigateToPage('cart.html')">
+            <img src="web images/carto.png" alt="carts">
+            <span id="cartCount">0</span>
+        </button>
+    </nav>
+
+    <div class="rectangle-container">
+        <div class="rectangle-polygon">
+            <div class="rectangle1-container">
+                    <div class="triangle"><img src="web images/triangle.png"/>
+                        <h1 class="tittle1">Customer</h1><h1 class="tittle2">Feedbacks</h1></div>
+                    <div class="feedback2"><img src="web images/feedback2.PNG"/></div>
+                    <div class="feedback1"><img src="web images/feedback1.PNG"/></div>
+            </div>
+        </div>
+
+        <div class="rectangle-polygon2">
+            <div class="additionalinfo">
+            <h3 class="didyouknow" style="font-size:40px; font-family:Comic Sans MS;">Did You Know?</h3>
+            <p class="info" style="font-size:20px; font-family: Georgia;">Our skincare line embraces Halal principles, guaranteeing safety and adherence to Islamic guidelines. Our products exclude prohibited substances, ensuring purity and ethical sourcing. Rest assured, each item is certified Halal, aligning with your religious beliefs and delivering quality skincare you can trust.</p>
+            </div>
+        </div>
+      </div>
+      <script 
+        src="https://code.jquery.com/jquery-3.7.1.slim.min.js" integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8=" crossorigin="anonymous">
+    </script>
+
+    <!-- Call cartCount function(External file js) -->
+    <script src="cartCount.js"></script>
+    
+    <script>
+
+        function navigateToPage(targetUrl) {
+            window.location.href = targetUrl;
+        }
+    </script>
+    </body>
+</html> 

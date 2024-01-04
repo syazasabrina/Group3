@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact</title>
+    <link rel="stylesheet" href="header_style.css">
+    <style>
+        .ig-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        padding: 20px;
+        max-width: 1200px;
+        margin: auto;
+    }
+    .socialmedia-container {
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: column;
+        align-items: baseline;
+        justify-content: center;
+        padding: 20px;
+        max-width: 1200px;
+        margin: auto;
+    }
+    .contact-container {
+        display: flex;
+        justify-content: space-evenly;
+        flex-wrap: wrap;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-evenly;
+        padding: 20px;
+        max-width: 1200px;
+        margin: auto;
+    }
+    .location-container {
+        display: flex;
+        border: 1px solid #f4c9f8;
+        align-items: center;
+    }
+    .whatsapp-container {
+        display: flex;
+        border: 1px solid  #f4c9f8;
+        align-items: center;
+    }
+    .insta-container {
+        display: flex;
+        border: 1px solid  #f4c9f8;
+        align-items: center;
+    }
+    </style>
+</head>
+<body>
+    <header>
+        <h1><i>"Indeed, Allah is beautiful and He loves beauty"</i></h1>
+    </header>
+
+    <nav>
+        <button class="nav-button" onclick="navigateToPage('home.html')">Home</button>
+        <button class="nav-button" onclick="navigateToPage('products.html')">Products</button>
+        <button class="nav-button" onclick="navigateToPage('contact.html')">Contact</button>
+        <button class="nav-button" onclick="navigateToPage('blog.html')">Blog</button>
+        <p>AINAA BEAUTY BY AGENT ATHIRAH</p>
+        <button class="nav-button cart-button" onclick="navigateToPage('cart.html')">
+            <img src="web images/carto.png" alt="carts">
+            <span id="cartCount">0</span>
+        </button>
+    </nav>
+    <div class="contact-container">
+    <div class="ig-container">
+       <a href="https://www.instagram.com/ainaa.atirah?igsh=cXFmdjUyYmVpaWln"><img src="web images/ig-agent.png"></a>
+    </div>
+
+    <div class="socialmedia-container">
+        <a class="location-contaier" style="text-decoration:none; color: black; font-size: 32px; font-family: fantasy; font-weight: 400; line-height: 27.50px; word-wrap: break-word;" href="https://maps.app.goo.gl/LjUB39e73YEKHVrt8"><img style="width:63px; height: 81px;" src="web images/location.png">Temerloh, Pahang</a>
+        <p></p>
+        <a class="whatsapp-container" style="text-decoration:none; color: black; font-size: 32px; font-family: fantasy; font-weight: 400; line-height: 27.50px; word-wrap: break-word;" href="http://wa.me/60189551421"><img style="width:60px; height: 81px;" src="web images/whatsapp.png">+6018-9551421</a>
+        <p></p>
+        <a class="insta-container" style="text-decoration:none; color: black; font-size: 32px; font-family: fantasy; font-weight: 400; line-height: 27.50px; word-wrap: break-word;" href="https://www.instagram.com/ainaa.atirah?igsh=cXFmdjUyYmVpaWln"><img style="width:70px; height: 81px;" src="web images/insta.png">  @ainaa.atirah</a>
+
+
+    </div>
+    </div>
+
+    <script 
+        src="https://code.jquery.com/jquery-3.7.1.slim.min.js" integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8=" crossorigin="anonymous">
+    </script>
+
+    <!-- Call cartCount function(External file js) -->
+    <script src="cartCount.js"></script>
+
+    <script>
+        //Turn to another page 
+        function navigateToPage(targetUrl) {
+            window.location.href = targetUrl;
+        }
+    </script>
+</body>
+</html>
